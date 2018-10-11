@@ -2,6 +2,7 @@ package vn.backshop.github.modules.users;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.AppCompatTextView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -37,9 +38,13 @@ class UserHolder extends BaseHolder<UserEntity> {
     @Override
     public void bindingData(UserEntity data) {
         userEntity = data;
+        if(null == data){
+            return;
+        }
 
         tvName.setText(data.getLogin());
         ivAvatar.setImageURI(data.getAvatar());
+
         if(data.isBadge()){
             tvStaff.setVisibility(View.VISIBLE);
         }else{

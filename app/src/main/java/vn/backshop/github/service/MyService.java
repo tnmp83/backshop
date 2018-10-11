@@ -51,8 +51,27 @@ public class MyService{
         restApi = retrofit.create(RestApi.class);
     }
 
-    public void getUsers(int index, final int limit, final RestListener<List<UserEntity>> listener){
+    public void getUsers(int index, int limit, final RestListener<List<UserEntity>> listener){
         restApi.restUsers(index, limit).enqueue(new Callback<List<UserEntity>>() {
+            @Override
+            public void onResponse(Call<List<UserEntity>> call, Response<List<UserEntity>> response) {
+                Log.d("retrofit", "Response List: " + response.code());
+                if(null != listener){
+                    listener.onSuccess(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<UserEntity>> call, Throwable t) {
+                if(null != listener){
+                    listener.onError(t.getMessage());
+                }
+            }
+        });
+    }
+
+    public void getUsers(int since, final RestListener<List<UserEntity>> listener){
+        restApi.restUsers(since).enqueue(new Callback<List<UserEntity>>() {
             @Override
             public void onResponse(Call<List<UserEntity>> call, Response<List<UserEntity>> response) {
                 Log.d("retrofit", "Response List: " + response.code());

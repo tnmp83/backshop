@@ -35,19 +35,19 @@ public class UserFragment extends BaseFragment implements IUser.View {
     public void createView(Bundle savedInstanceState) {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+        initLoadMore(layoutManager);
 
         adapter = new UserAdapter(getContext());
         recyclerView.setAdapter(adapter);
         adapter.setOnItemListener(holderListener);
-        initLoadMore(layoutManager);
 
         presenter = new UserPresenter(this);
         presenter.getUsers();
     }
 
     @Override
-    public void onUsers(List<UserEntity> list) {
-        adapter.pushItem(list);
+    public void onUsers(List<UserEntity> list, int limit) {
+        adapter.pushItem(list, limit);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class UserFragment extends BaseFragment implements IUser.View {
         scrollListener = new EndlessScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                Log.d("loadmore", "page " + page);
+                Log.d("retrofit", "page: " + page);
                 presenter.getUsers();
             }
         };

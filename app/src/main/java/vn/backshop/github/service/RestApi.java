@@ -12,7 +12,10 @@ import vn.backshop.github.model.UserEntity;
 public interface RestApi {
 
     @GET("users")
-    Call<List<UserEntity>> restUsers(@Query("since") int index, @Query("page_size") int limit);
+    Call<List<UserEntity>> restUsers(@Query("since") int since);
+
+    @GET("user/repos")
+    Call<List<UserEntity>> restUsers(@Query("page") int page, @Query("per_page") int limit);
 
     @GET("users/{login}")
     Call<DetailEntity> restUser(@Path("login") String login);

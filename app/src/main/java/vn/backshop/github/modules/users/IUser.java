@@ -8,7 +8,7 @@ import vn.backshop.github.model.UserEntity;
 interface IUser {
 
     interface View extends IView {
-        void onUsers(List<UserEntity> list);
+        void onUsers(List<UserEntity> list, int limit);
     }
 
     interface Presenter{
