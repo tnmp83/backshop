@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_avatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        app:actualImageScaleType="focusCrop"
+        app:retryImageScaleType="centerCrop"
+        app:roundAsCircle="true"
+        app:viewAspectRatio="1.33" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/iv_avatar">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            style="@style/text_view" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_staff"
+            style="@style/text_view"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/ivAvatar"
+            android:background="@drawable/background_blue"
+            android:text="@string/staff"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
